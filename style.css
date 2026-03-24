@@ -1,0 +1,100 @@
+ body {
+            font-family: "Song Myung", serif;
+            /* [배경색] color Hunt 팔레트에서 가장 연하고 밝은 색을 고르세요 */
+            background-color: #79c3ff;
+            /* [글자색] 배경색과 대비되도록 가장 진하고 어두운 색을 고르세요 */
+            color : #000000;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* 상단 헤더 꾸미기*/
+        header{
+            /* [포인트색] 팔레트에서 가장 눈에 띄는 진한 색을 고르세요 */
+
+            background-color: #ffb2b2;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        /* 3.메뉴바(nav) 꾸미기 */
+        nav{
+        text-align: center;
+        padding: 15x;
+        background-color: White;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            /*[링그색] 헤더 색생과 비슷한 계열의 중간 톤을 고르세요*/
+            color: #000000
+        }
+
+        /* 4. 이미지(사진) 예쁘게 만들기*/
+        img {
+            display : block;
+            margin : 30px auto;
+            width: 250px;
+            border-radius: 50%;
+            border: 10px solid rgb(255, 170, 170);
+            box-shadow: 0 10px 20px rgbe(0,0,0,0.1);
+        }
+
+        header, footer {
+            padding: 50px;
+        }
+
+        main {
+            width: 80%;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border: 1px
+        }
+        .my-button{
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #549fd8;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+            .my-button:hover{
+                background-color: #112d4e;
+                transform: translateY(-3px);
+            }
+            
+            .material-symbols-outlined {
+            font-variation-settings: 
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 40,
+            }
+
+            /*정공페이지 스타일*/
+            .crop-item {
+                display: flex;
+                gap: 50px;
+                padding: 30px;
+                border-radius: 15px;
+                background-color: hsl(64, 100%, 86%)
+            }
+            
+            .crop-image {
+                flex: 1;
+            }
+
+            .corp-details {
+                flex:1.5;
+            }
+            .step-guide{
+                border: 1px dashed #4caf50;
+                text-align: center;
+            }
