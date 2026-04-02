@@ -32,7 +32,7 @@ grass
         <section class="agriculture-portfolio">
             <article class="crop-item">
                 <figure class="crop-image"> 
-                    <img src="./image/2.jpg" alt="직접 재배핸 농작물 사진">
+                    <img src="./rr.jpg" alt="직접 재배핸 농작물 사진">
                     <figcaption>그림1. 본인이 직접 재배한 농작물 실물</figcaption>
                 </figure>
 
@@ -42,10 +42,13 @@ grass
                     <section class="info-block">
                         <h4>재배 및 생산 특성</h4>
                         <ul>
-                            <li><strong>고구마 정의:</strong>고구마(sweet potato)는 메꽃과의 여러해살이 식물로, 식품 또는 작물로서 가리킬 때는 특히 전분이 발달한 덩이뿌리를 말한다. 탄수화물이 풍부하고 병충해에 강해 감자와 함께 전통적인 구황작물로 여겨졌으며, 오늘날에도 풍부한 단맛으로 널리 사랑받는 채소이다. 고구마는 식용은 물론이고 제당 및 약품, 화장품 생산을 위한 공업용으로 쓰이기도 한다.</li>
+                           <li><strong>고구마 정의:</strong>고구마(sweet potato)는 메꽃과의 여러해살이 식물로, 식품 또는 작물로서 가리킬 때는 특히 전분이 발달한 덩이뿌리를 말한다. 탄수화물이 풍부하고 병충해에 강해 감자와 함께 전통적인 구황작물로 여겨졌으며, 오늘날에도 풍부한 단맛으로 널리 사랑받는 채소이다. 고구마는 식용은 물론이고 제당 및 약품, 화장품 생산을 위한 공업용으로 쓰이기도 한다.</li>
                             <li><strong>고구마 종류: 밤고구마,호박고구마,꿀고구마,
                                 자색고구마</strong></li>
                             <li><strong>고구마 재배:</strong>마사토나 황토 등 입자가 고운 토양에서 키우는 것이 상품성이 좋다. 토질이 돌이 많아 거칠고 단단한 땅일 경우 고구마 덩이뿌리가 제대로 뻗지 못해서 모양이 작고 기괴하며 거친 섬유조직이 많이 발달하게 되어 상품성이 떨어진다.</li>
+                            <span class="material-symbols-outlined">
+                            school
+                            </span>
                         </ul>
                     <section>
                         <section class="info-block distribution"></section>
@@ -62,12 +65,71 @@ grass
                 </div>
             </article>
         </section>
+         <section id="order-area">
+        <hr>
+        <h2>온라인 주문하기</h2>
+        <form acrion="">
+            <div class="input-row">
+                <div class="input-group">
+                    <label>주문자 성함</label>
+                    <input type="text" id= "userName"placeholder="실명을 입력하세요">
+                </div>
+                <div class="input-group">
+                    <label for="">연락처</label>
+                    <input type="text" id= "userphone" placeholder="010-0000-0000">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>배송 방식 선택</label>
+                <select>
+                    <option>일반 택배(3,000원)</option>
+                    <option>신선 새벽 배송(5,000원)</option>
+                    <option>광주 로컬푸드 매장 픽업(무료)</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <label>배송 메시지</label>
+                <textarea placeholder="부재 시 문 앞에 놓아주세요"></textarea>
+            </div>
+
+            <button type="button" class="order-btn" onclick="processOrder()"> 지금 바로 주문 완료</button>
+
+            <div id="receipt" class="receipt-box"></div>
+        </form>
+    </section>
 
     </main>
+   
 
     <footer>
         문의 : 문의 : dddhyeon0917@gmail.com &copy; all right resevered by 2026 김도현
     </footer>
     
+    <script>
+        function processOrder(){
+            let name = document.getElementById('userName').value;
+            let phone = document.getElementById('userphone').value;
+            let message = document.querySelector('textarea').value;
+            if (name=== "" || phone === ""){
+                alert("정보를 모두 입력해 주세요!");
+                return ;
+            }
+            let receipt = document.getElementById('receipt');
+
+        receipt.innerHTML =`
+        <h3>📜주문 확인 영수중</h3>
+        <p><strong>주문자:</strong> ${name}님</p>
+        <p><strong>연락처:</strong> ${phone}</p>
+        <p><strong>요청사항:</strong> ${message || "없음"}님</p>
+        <hr>
+        <p style="text-align:center;">주문해주셔서 감사합니다! 🍯</p>
+        `;
+
+        receipt.style.display = "block"
+        }
+        
+    </script>
 </body>
 </html>
