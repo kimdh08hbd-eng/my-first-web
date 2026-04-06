@@ -82,10 +82,10 @@ grass
 
             <div class="input-group">
                 <label>배송 방식 선택</label>
-                <select>
-                    <option>일반 택배(3,000원)</option>
-                    <option>신선 새벽 배송(5,000원)</option>
-                    <option>광주 로컬푸드 매장 픽업(무료)</option>
+                <select name="" id="deliveryFee">
+                    <option value="3000">일반 택배(3,000원)</option>
+                    <option value="5000">신선 새벽 배송(5,000원)</option>
+                    <option value="0">광주 로컬푸드 매장 픽업(무료)</option>
                 </select>
             </div>
             
@@ -111,6 +111,14 @@ grass
         function processOrder(){
             let name = document.getElementById('userName').value;
             let phone = document.getElementById('userphone').value;
+
+            //1. 배송비 가져오기 및 숫자로 변환하기
+            let FeeValue = document.getElementById("deliveryFee").value;
+            let deliveryFee = Number(FeeValue);
+
+            //2. 총 금액 계산(상품 가격 15,000 + 배송비;)
+            let productPrice = 15000;
+            let totalPrice = productPrice + deliveryFee;
             let message = document.querySelector('textarea').value;
             if (name=== "" || phone === ""){
                 alert("정보를 모두 입력해 주세요!");
@@ -122,8 +130,12 @@ grass
         <h3>📜주문 확인 영수중</h3>
         <p><strong>주문자:</strong> ${name}님</p>
         <p><strong>연락처:</strong> ${phone}</p>
+        <p><strong>상품 가격:</strong>${productPrice. toLocaleString()}원</p>
+        <p><strong>배송비:</strong> ${deliveryFee.toLocaleString()}원</p>
         <p><strong>요청사항:</strong> ${message || "없음"}님</p>
         <hr>
+        <p style="font-size: 1.2em;"><strong>총 결제 금액:
+            <span style="color:red;"> ${totalPrice.toLocaleString()}원</span></strong></p>
         <p style="text-align:center;">주문해주셔서 감사합니다! 🍯</p>
         `;
 
