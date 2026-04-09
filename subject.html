@@ -24,15 +24,17 @@ grass
     </header>
 
     <nav>
-       <a href="index.html">홈으로</a> |
-        <a href="subject.html">전공 탐구</a>
+         <a href="index.html">홈으로</a>|
+        <a href="subject.html">전공 탐구</a>|
+        <a href="gallry.html">갤러리
+        </a>
     </nav>
 
     <main>
         <section class="agriculture-portfolio">
             <article class="crop-item">
                 <figure class="crop-image"> 
-                    <img src="./rr.jpg" alt="직접 재배핸 농작물 사진">
+                    <img src="img/rr.jpg" alt="직접 재배핸 농작물 사진">
                     <figcaption>그림1. 본인이 직접 재배한 농작물 실물</figcaption>
                 </figure>
 
@@ -80,6 +82,22 @@ grass
                 </div>
             </div>
 
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="unitWeight">구매 단위 선택</label>
+                    <select id="unitWeight">
+                        <option value="15000">유기농 고구마 1Kg (15,000원)</option>
+                        <option value="45000">유기농 고구마 3Kg (45,000원)</option>
+                        <option value="70000">유기농 고구마 6Kg (70,000원)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="quantity">주문 수량 (박스)</label>
+                    <input type="number" id="quantity" value="1" min="1" max="10">
+                </div>
+            </div>
+
             <div class="input-group">
                 <label>배송 방식 선택</label>
                 <select name="" id="deliveryFee">
@@ -111,36 +129,54 @@ grass
         function processOrder(){
             let name = document.getElementById('userName').value;
             let phone = document.getElementById('userphone').value;
+    let quantity = Number(document.getElementById("quantity").value);
+let deliveryFee = Number(document.getElementById("deliveryFee").value);
 
             //1. 배송비 가져오기 및 숫자로 변환하기
-            let FeeValue = document.getElementById("deliveryFee").value;
-            let deliveryFee = Number(FeeValue);
+            let  unitSelect = document.getElementById("unitWeight")
+            let productPrice = Number(unitSelect.value);
+            let productName = unitSelect.options[unitSelect.selectedIndex].text;
 
             //2. 총 금액 계산(상품 가격 15,000 + 배송비;)
-            let productPrice = 15000;
-            let totalPrice = productPrice + deliveryFee;
-            let message = document.querySelector('textarea').value;
-            if (name=== "" || phone === ""){
-                alert("정보를 모두 입력해 주세요!");
-                return ;
+           let basePrice = productPrice * quantity;
+
+           if (basePrice >= 30000) {
+            deliveryFee = 0; //3만원 이상 시 배송비 무료
+           }
+
+           let totalPrice = basePrice + deliveryFee;
+
+           // [4] 주문 시각 및 입력 검사
+           let dateString = new Date().toLocaleString();
+
+           if (name ==="" || phone === ""){
+            alert("⚠️정보를 모두 입력해 주세요!");
+            return;
+           }
+
+           //[5] 여수증 출력 (백틱 `사용 주의)
+           let receipt = document.getElementById("receipt");
+           receipt.innerHTML = `
+        
+            <h3>📜주문 확인 영수중</h3>
+            <p style="color: gray; font-size: 0.8em;">주문 시각: ${dateString}</p>
+            <hr>
+            <p><strong>주문자:</strong> ${name}님</p>
+            <p><strong>주문 상품:</strong> ${productName}</p>
+            <p><strong>주문 수량:</strong> ${quantity} 박스</p>
+            <p><strong>배송비:</strong> ${deliveryFee.toLocaleString()}원</p>
+                ${deliveryFee === 0 ? "무료배송" : deliveryFee.toLocaleString() + "원"}
+
+            <p style="font-size: 1.2em; margin-top: 10px">
+                <strong>총 결제 금액:
+                <span style="color:red;"> ${totalPrice.toLocaleString()}원</span>
+             </strong>
+            </p>
+            <p style="text-align:center;">주문해주셔서 감사합니다! 🍯</p>
+            `;
+
+            receipt.style.display = "block"
             }
-            let receipt = document.getElementById('receipt');
-
-        receipt.innerHTML =`
-        <h3>📜주문 확인 영수중</h3>
-        <p><strong>주문자:</strong> ${name}님</p>
-        <p><strong>연락처:</strong> ${phone}</p>
-        <p><strong>상품 가격:</strong>${productPrice. toLocaleString()}원</p>
-        <p><strong>배송비:</strong> ${deliveryFee.toLocaleString()}원</p>
-        <p><strong>요청사항:</strong> ${message || "없음"}님</p>
-        <hr>
-        <p style="font-size: 1.2em;"><strong>총 결제 금액:
-            <span style="color:red;"> ${totalPrice.toLocaleString()}원</span></strong></p>
-        <p style="text-align:center;">주문해주셔서 감사합니다! 🍯</p>
-        `;
-
-        receipt.style.display = "block"
-        }
         
     </script>
 </body>
