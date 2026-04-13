@@ -39,7 +39,7 @@ img {
   margin: 30px auto;
   width: 250px;
   border-radius: 50%;
-  border: 10px solid rgb(255, 230, 0);
+  border: 10px solid rgb(243, 240, 211);
   box-shadow: 0 10px 20px rgbe(0, 0, 0, 0.1);
 }
 
@@ -210,20 +210,19 @@ select {
 }
 
 .thumb-list{
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 15px;
-  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .thumb-list img {
-  cursor: pointer;
-  border: 3px solid transparent;
-  transition: 0.2s;
   width: 100px;
-  height:100px;
+  height:120px;
   object-fit:cover ;
   border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .thumb-list img:hover {
