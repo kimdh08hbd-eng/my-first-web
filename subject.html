@@ -31,7 +31,14 @@ grass
     </nav>
 
     <main>
-        <section class="agriculture-portfolio">
+     <div id="login-box" style="text-align: center;margin:50px;">
+        <h2>🔒시스템 인증이 필요합니다</h2>
+        <input type="password" id="userPw" placeholder="암호 4자리">
+        <button onclick="checkLogin()">입장하기</button>
+     </div>
+     <div id="secret-area" style="display:none;">
+     <div id="secret-area">
+           <section class="agriculture-portfolio">
             <article class="crop-item">
                 <figure class="crop-image"> 
                     <img src="img/rr.jpg" alt="직접 재배핸 농작물 사진">
@@ -117,6 +124,7 @@ grass
             <div id="receipt" class="receipt-box"></div>
         </form>
     </section>
+     </div>
 
     </main>
    
@@ -176,6 +184,14 @@ let deliveryFee = Number(document.getElementById("deliveryFee").value);
             `;
 
             receipt.style.display = "block"
+            }
+            function checkLogin(){
+                let pw = document.getElementById("userPw").value;
+                if (pw === "1234" ){
+                    alert("인증이 성공하였습니다.");
+                    document.getElementById("login-box").style.display = "none";
+                    document.getElementById("secret-area").style.display = "block";
+                }
             }
         
     </script>
