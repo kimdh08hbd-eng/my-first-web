@@ -146,8 +146,8 @@ grass
         function processOrder(){
             let name = document.getElementById('username').value;
             let phone = document.getElementById('userphone').value;
-    let quantity = Number(document.getElementById("quantity").value);
-let deliveryFee = Number(document.getElementById("deliveryFee").value);
+            let quantity = Number(document.getElementById("quantity").value);
+            let deliveryFee = Number(document.getElementById("deliveryFee").value);
 
             //1. 배송비 가져오기 및 숫자로 변환하기
             let  unitSelect = document.getElementById("unitWeight")
@@ -194,14 +194,30 @@ let deliveryFee = Number(document.getElementById("deliveryFee").value);
 
             receipt.style.display = "block"
             }
-            function checkLogin(){
-                let pw = document.getElementById("userPw").value;
-                if (pw === "1234" ){
-                    alert("인증이 성공하였습니다.");
-                    document.getElementById("login-box").style.display = "none";
-                    document.getElementById("secret-area").style.display = "block";
-                }
-            }
+            function checkLogin() {
+  let name = document.getElementById("userName").value;
+  let pw = document.getElementById("userPw").value;
+
+  // 금고에서 비밀번호를 가져오거나 없으면 '1234'를 기본값으로 설정
+  let currentPw = localStorage.getItem("userPassword") || "1234";
+
+  if (pw === currentPw && name !== "") {
+    // [밑바탕 작업] 이름과 상태를 금고(localStorage)에 넣습니다.
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("savedName", name);
+    localStorage.setItem("userPassword", currentPw);
+
+    alert(name + "님, 인증 정보가 저장소에 기록되었습니다.");
+
+    // 즉시 화면 전환 및 이름 표시
+    document.getElementById("login-box").style.display = "none";
+    document.getElementById("secret-area").style.display = "block";
+    document.getElementById("user-display").innerText = name;
+
+  } else {
+    alert("이름을 입력하지 않았거나 암호가 틀렸습니다.");
+  }
+}
              window.onload = function() {
                 let isLoggedIn = localStorage.getItem("isLoggedIn"); let savedName = localStorage.getItem("savedName");
 
